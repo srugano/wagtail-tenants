@@ -1,8 +1,6 @@
 from dbbackup.db.postgresql import PgDumpBinaryConnector
 from dbbackup.utils import filename_generate
 
-from wagtail_tenants.customers.models import ClientBackup
-
 
 class TenantPgDumpBinaryConnector(PgDumpBinaryConnector):
     """

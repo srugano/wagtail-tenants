@@ -43,14 +43,12 @@ SHARED_APPS = (
     "wagtail",
     "modelcluster",
     "taggit",
-
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "wagtail.api.v2",
     "rest_framework",
 )
@@ -59,7 +57,6 @@ SHARED_APPS = (
 TENANT_APPS = [
     "wagtail_tenants",
     "tests",
-    
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
@@ -138,10 +135,10 @@ DATABASE_ROUTERS = ("wagtail_tenants.routers.WagtailTenantSyncRouter",)
 
 CUSTOM_CONNECTOR_MAPPING = True
 DBBACKUP_CONNECTOR_MAPPING = {
-    'django_tenants.postgresql_backend': 'wagtail_tenants.db.db_backup_connector.TenantPgDumpBinaryConnector',
+    "django_tenants.postgresql_backend": "wagtail_tenants.db.db_backup_connector.TenantPgDumpBinaryConnector",
 }
-DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR + '/backups'}
+DBBACKUP_STORAGE = "django.core.files.storage.FileSystemStorage"
+DBBACKUP_STORAGE_OPTIONS = {"location": BASE_DIR + "/backups"}
 
 AUTH_USER_MODEL = "wagtail_tenants.User"
 TENANT_MODEL = "customers.Client"
@@ -181,7 +178,6 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
-USE_L10N = True
 
 USE_TZ = True
 
@@ -201,7 +197,14 @@ STATICFILES_DIRS = [
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
 # See https://docs.djangoproject.com/en/3.2/ref/contrib/staticfiles/#manifeststaticfilesstorage
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+    },
+}
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"

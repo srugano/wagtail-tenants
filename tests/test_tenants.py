@@ -1,29 +1,22 @@
 import pytest
-from django.core.management import call_command
 from contextlib import contextmanager
 from unittest import mock
 
-from django.test import TestCase, override_settings
-from django.urls import reverse, reverse_lazy
 
 from wagtail.tests.utils import WagtailTestUtils
 
 from wagtail_tenants.customers.models import Client, Domain
 from wagtail_tenants.models import User
 
-from wagtail.models import Page, Site
+from wagtail.models import Page
 
 
 from django_tenants.utils import (
     tenant_context,
-    schema_context,
-    schema_exists,
     get_tenant_model,
     get_public_schema_name,
     get_tenant_domain_model,
-    schema_rename,
 )
-from rest_framework.test import APIRequestFactory
 
 from .testcases import BaseTestCase
 

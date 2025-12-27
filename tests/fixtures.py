@@ -1,6 +1,3 @@
-import pytest
-
-
 # @pytest.fixture
 # def page():
 #     from wagtail.core.models import Page

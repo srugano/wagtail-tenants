@@ -1,39 +1,48 @@
-from django.apps import apps
-from django.urls import re_path
+from django.urls import path
 from wagtail import hooks
-from wagtail.contrib.modeladmin.options import modeladmin_register
 
-import wagtail_tenants.users.views.users as TenantUserViews  # import index, edit, create
+from wagtail_tenants.users import viewsets as tenant_viewsets
 from wagtail_tenants.utils import get_allowed_features, get_tenant_aware_apps
 
 from .admin import TenantAdminGroup
 from .panels import TenantPanel
-from .views import TenantAwareGroupViewSet, TenantUserAdmin
-
-modeladmin_register(TenantAdminGroup)
+from .views import LinkAdminView
 
 
-@hooks.register("register_admin_urls")
-def tenant_user_urls():
-    return [
-        re_path(r"^users/(\d+)/$", TenantUserViews.edit, name="wagtailusers_edit"),
-        re_path(r"^users/add/$", TenantUserViews.create, name="wagtailusers_create"),
-        re_path(r"^users/", TenantUserViews.index, name="wagtailusers_index"),
-    ]
+@hooks.register("register_admin_viewset")
+def register_tenant_admin_viewset():
+    """
+    Registers the SnippetViewSetGroup for Client, Domain, and Backup models.
+    """
+    return TenantAdminGroup()
+
+
+@hooks.register("register_admin_viewset")
+def register_user_viewset():
+    """
+    Overrides the default UserViewSet with our tenant-aware version.
+    """
+    return tenant_viewsets.UserViewSet("wagtailusers_users", url_prefix="users")
+
+
+@hooks.register("register_admin_viewset")
+def register_group_viewset():
+    """
+    Overrides the default GroupViewSet with our tenant-aware version.
+    """
+    return tenant_viewsets.GroupViewSet("wagtailusers_groups", url_prefix="groups")
 
 
 @hooks.register("register_admin_urls")
 def tenant_user_create_url():
+    """
+    Registers the URL for the 'Link Admin' view.
+    """
     return [
-        re_path(
-            r"^wagtail-tenants/admin/link/$",
-            TenantUserAdmin.create,
+        path(
+            "wagtail-tenants/admin/link/",
+            LinkAdminView.as_view(),
             name="wagtail-tenants__admin_link",
-        ),
-        re_path(
-            r"^wagtail-tenants/admin/",
-            TenantUserViews.index,
-            name="wagtail-tenants__admin_index",
         ),
     ]
 

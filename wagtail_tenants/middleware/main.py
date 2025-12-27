@@ -1,13 +1,10 @@
-from django_tenants.middleware.main import TenantMainMiddleware
-
-
-class WagtailTenantMainMiddleware(TenantMainMiddleware):
-    ...
-
-
 from django.apps import apps
 from django.shortcuts import redirect
+from django_tenants.middleware.main import TenantMainMiddleware
 from django_tenants.utils import get_tenant_model
+
+
+class WagtailTenantMainMiddleware(TenantMainMiddleware): ...
 
 
 class WagtailTenantPermissionMiddleware:

@@ -6,7 +6,6 @@ import wagtail_tenants.users.models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [

@@ -6,7 +6,6 @@ UserModel = get_user_model()
 
 class TenantBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
-
         tenant = None
         if hasattr(request, "tenant"):
             tenant = request.tenant

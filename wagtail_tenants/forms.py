@@ -1,9 +1,5 @@
 from django import forms
-from django.apps import apps
-from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Permission
-from django.contrib.contenttypes.models import ContentType
 from wagtail import hooks
 from wagtail.users.forms import GroupForm
 
@@ -15,7 +11,6 @@ UserModel = get_user_model()
 
 
 class TenantAdminUserForm(forms.Form):
-
     superusers = UserModel.objects.filter(is_staff=True)
     tenants = Client.objects.exclude(schema_name="public")
 

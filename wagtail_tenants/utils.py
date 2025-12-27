@@ -1,14 +1,12 @@
+"""Utility functions for the wagtail-tenants app."""
+
 from django.apps import apps
 from django.conf import settings
-from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-
-"""
-Checks that the user has a tenant and that the tenant is the given one.
-"""
 
 
 def check_tenant_for_user(user, tenant):
+    """Checks that the user has a tenant and that the tenant is the given one."""
     if not hasattr(user, "tenant"):
         return False
     else:
@@ -44,9 +42,6 @@ def filter_permissions_reserved_for_superuser(current_tenant, registered_permiss
         content_type_ids_to_exclude.append(content_type.id)
 
     return content_type_ids_to_exclude
-
-
-from django.apps import apps
 
 
 def get_allowed_features(current_tenant):
