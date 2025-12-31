@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext as _
-from wagtail.admin.menu import MenuItem
 from wagtail.snippets.views.snippets import SnippetViewSet, SnippetViewSetGroup
 
 from wagtail_tenants.customers.models import Client, ClientBackup, Domain
@@ -86,15 +85,3 @@ class TenantAdminGroup(SnippetViewSetGroup):
     menu_label = _("Tenants")
     menu_icon = "group"
     items = (TenantClientAdmin, TenantDomainAdmin, TenantBackupAdmin)
-
-    def get_menu_items(self):
-        menu_items = super().get_menu_items()
-        menu_items.append(
-            MenuItem(
-                label=_("Link Admin"),
-                url="/admin/wagtail-tenants/admin/link/",
-                icon_name="group",
-                order=3000,
-            )
-        )
-        return menu_items

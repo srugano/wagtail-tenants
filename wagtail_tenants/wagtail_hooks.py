@@ -1,5 +1,7 @@
-from django.urls import path
+from django.urls import path, reverse
+from django.utils.translation import gettext_lazy as _
 from wagtail import hooks
+from wagtail.admin.menu import MenuItem
 
 from wagtail_tenants.users import viewsets as tenant_viewsets
 from wagtail_tenants.utils import get_allowed_features, get_tenant_aware_apps
@@ -31,6 +33,20 @@ def register_group_viewset():
     Overrides the default GroupViewSet with our tenant-aware version.
     """
     return tenant_viewsets.GroupViewSet("wagtailusers_groups", url_prefix="groups")
+
+
+@hooks.register("register_admin_menu_item")
+def register_link_admin_menu_item():
+    """
+    Registers the 'Link Admin' menu item.
+    """
+    return MenuItem(
+        label=_("Link Admin"),
+        url=reverse("wagtail-tenants__admin_link"),
+        name="link-admin",
+        icon_name="group",
+        order=602,
+    )
 
 
 @hooks.register("register_admin_urls")

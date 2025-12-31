@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
-from wagtail.users.viewsets import GroupViewSet as WagtailGroupViewSet
-from wagtail.users.viewsets import UserViewSet as WagtailUserViewSet
+from wagtail.users.views.groups import GroupViewSet as WagtailGroupViewSet
+from wagtail.users.views.users import UserViewSet as WagtailUserViewSet
 
 from wagtail_tenants.forms import TenantAwareGroupForm
 from wagtail_tenants.users.models import TenantGroup
