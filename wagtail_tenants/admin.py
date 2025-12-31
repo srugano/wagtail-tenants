@@ -2,8 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext as _
 from wagtail.admin.menu import MenuItem
-from wagtail.snippets.views.snippets import SnippetViewSet
-from wagtail.snippets.viewsets import SnippetViewSetGroup
+from wagtail.snippets.views.snippets import SnippetViewSet, SnippetViewSetGroup
 
 from wagtail_tenants.customers.models import Client, ClientBackup, Domain
 
