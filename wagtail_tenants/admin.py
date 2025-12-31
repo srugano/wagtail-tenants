@@ -60,14 +60,14 @@ class CustomUserAdmin(UserAdmin):
 class TenantClientAdmin(SnippetViewSet):
     model = Client
     list_display = ("name", "paid_until", "on_trial", "created_on")
-    menu_icon = "user"
+    icon = "user"
     menu_label = _("Clients")
 
 
 class TenantDomainAdmin(SnippetViewSet):
     model = Domain
     list_display = ("domain", "tenant")
-    menu_icon = "redirect"
+    icon = "redirect"
     menu_label = _("Domains")
 
 
@@ -77,11 +77,11 @@ class TenantBackupAdmin(SnippetViewSet):
         "filename",
         "created_at",
     )
-    menu_icon = "redirect"
+    icon = "redirect"
     menu_label = _("Backups")
 
 
 class TenantAdminGroup(SnippetViewSetGroup):
     menu_label = _("Tenants")
-    menu_icon = "group"
+    icon = "group"
     items = (TenantClientAdmin, TenantDomainAdmin, TenantBackupAdmin)
