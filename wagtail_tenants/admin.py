@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext as _
 from wagtail.admin.menu import MenuItem
-from wagtail.snippets.permissions import SnippetPermissionHelper
+from wagtail.contrib.snippets.permissions import SnippetPermissionHelper
 from wagtail.snippets.views.snippets import SnippetViewSet
 from wagtail.snippets.viewsets import SnippetViewSetGroup
 
