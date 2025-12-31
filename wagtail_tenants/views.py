@@ -5,7 +5,7 @@ from django_tenants.utils import tenant_context
 from wagtail.admin import messages
 from wagtail.admin.views import account
 from wagtail.admin.views.generic.base import WagtailAdminTemplateMixin
-from wagtail.admin.views.generic.forms import FormView
+from django.views.generic import FormView
 
 from wagtail_tenants.backends import UserModel
 from wagtail_tenants.forms import TenantAdminUserForm

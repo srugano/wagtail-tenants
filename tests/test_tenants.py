@@ -3,7 +3,7 @@ from contextlib import contextmanager
 from unittest import mock
 
 
-from wagtail.tests.utils import WagtailTestUtils
+from wagtail.test.utils import WagtailTestUtils
 
 from wagtail_tenants.customers.models import Client, Domain
 from wagtail_tenants.models import User
