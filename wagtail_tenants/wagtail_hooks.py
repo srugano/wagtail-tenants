@@ -3,7 +3,6 @@ from django.utils.translation import gettext_lazy as _
 from wagtail import hooks
 from wagtail.admin.menu import MenuItem
 
-from wagtail_tenants.users import viewsets as tenant_viewsets
 from wagtail_tenants.utils import get_allowed_features, get_tenant_aware_apps
 
 from .admin import TenantAdminGroup
@@ -17,22 +16,6 @@ def register_tenant_admin_viewset():
     Registers the SnippetViewSetGroup for Client, Domain, and Backup models.
     """
     return TenantAdminGroup()
-
-
-@hooks.register("register_admin_viewset")
-def register_user_viewset():
-    """
-    Overrides the default UserViewSet with our tenant-aware version.
-    """
-    return tenant_viewsets.UserViewSet("wagtailusers_users", url_prefix="users")
-
-
-@hooks.register("register_admin_viewset")
-def register_group_viewset():
-    """
-    Overrides the default GroupViewSet with our tenant-aware version.
-    """
-    return tenant_viewsets.GroupViewSet("wagtailusers_groups", url_prefix="groups")
 
 
 @hooks.register("register_admin_menu_item")

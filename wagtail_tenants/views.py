@@ -9,6 +9,10 @@ from django.views.generic import FormView
 
 from wagtail_tenants.backends import UserModel
 from wagtail_tenants.forms import TenantAdminUserForm
+from wagtail_tenants.users.viewsets import (
+    GroupViewSet as TenantAwareGroupViewSet,  # noqa: F401
+    UserViewSet as TenantAwareUserViewSet,  # noqa: F401
+)
 from wagtail_tenants.utils import check_tenant_for_user
 
 
