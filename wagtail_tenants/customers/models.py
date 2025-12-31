@@ -1,7 +1,6 @@
 from django.db import models
 from django_tenants.models import DomainMixin, TenantMixin
 from django_tenants.utils import schema_context
-from wagtail.snippets.models import register_snippet
 
 
 class ClientFeature(models.Model):
@@ -14,7 +13,6 @@ class ClientFeature(models.Model):
     wagtail_reference_index_ignore = True
 
 
-@register_snippet
 class Client(TenantMixin):
     name = models.CharField(max_length=100)
     paid_until = models.DateField()
@@ -36,7 +34,6 @@ class Client(TenantMixin):
     wagtail_reference_index_ignore = True
 
 
-@register_snippet
 class ClientBackup(models.Model):
     client = models.ForeignKey(
         Client, related_name="client_backups", on_delete=models.CASCADE
@@ -51,7 +48,6 @@ class ClientBackup(models.Model):
     wagtail_reference_index_ignore = True
 
 
-@register_snippet
 class Domain(DomainMixin):
     def save(self, *args, **kwargs):
         with schema_context("public"):
