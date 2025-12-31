@@ -2,16 +2,12 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext as _
 from wagtail.admin.menu import MenuItem
-from wagtail.contrib.snippets.permissions import SnippetPermissionHelper
 from wagtail.snippets.views.snippets import SnippetViewSet
 from wagtail.snippets.viewsets import SnippetViewSetGroup
 
 from wagtail_tenants.customers.models import Client, ClientBackup, Domain
 
 from .models import User
-
-
-class WagtailTenantsPermissionHelper(SnippetPermissionHelper): ...
 
 
 # Register your models here.
@@ -91,7 +87,6 @@ class TenantAdminGroup(SnippetViewSetGroup):
     menu_label = _("Tenants")
     menu_icon = "group"
     items = (TenantClientAdmin, TenantDomainAdmin, TenantBackupAdmin)
-    permission_helper_class = WagtailTenantsPermissionHelper
 
     def get_menu_items(self):
         menu_items = super().get_menu_items()
