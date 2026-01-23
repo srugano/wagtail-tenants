@@ -13,7 +13,7 @@ python = "^3.12"
 django-tenants = "^3.9.0"
 django-dbbackup = "^4.3.0"
 wagtail = "^6.0.0"
-Django = "~5.1.7"
+Django = "~5.1.15"
 PyYAML = "^6.0.1"
 djlint = "^1.36.4"
 
